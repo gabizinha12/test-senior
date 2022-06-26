@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -29,14 +30,15 @@ public class Empresa implements Serializable {
 	private String telephone;
 	private String email;
 	private String address;
-	@ElementCollection(targetClass = String.class)
+    @ElementCollection
 	private List<String> cnae = new ArrayList<>();
+
 
 	public Empresa() {
 	}
 
 	public Empresa(Long id, String cnpj, String socialReason, String fantasyName, String nickName, String telephone,
-			String email,  String address) {
+			String email,  String address, List<String> cnae) {
 		super();
 		this.id = id;
 		this.cnpj = cnpj;
@@ -46,6 +48,7 @@ public class Empresa implements Serializable {
 		this.telephone = telephone;
 		this.email = email;
 		this.address = address;
+		this.cnae = cnae;
 	}
 
 	public Long getId() {

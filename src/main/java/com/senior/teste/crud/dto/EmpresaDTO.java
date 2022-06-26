@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.ElementCollection;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -25,10 +26,11 @@ public class EmpresaDTO implements Serializable {
 	private String fantasyName;
 	@Size(max = 30)
 	private String nickName;
-	@Pattern(regexp = "/^\\([0-9]{2}\\) [0-9]?[0-9]{4}-[0-9]{4}$/\r\n")
+	@Pattern(regexp = "^(\\([0-9]{2}\\))\\s([9]{1})?([0-9]{4})-([0-9]{4})$")
 	private String telephone;
 	@Email(message = "Favor entrar um email válido")
 	private String email;
+    @ElementCollection
 	private List<String> cnae = new ArrayList<>();
 
 	public EmpresaDTO() {
@@ -42,6 +44,7 @@ public class EmpresaDTO implements Serializable {
 		nickName = entity.getNickName();
 		telephone = entity.getTelephone();
 		email = entity.getEmail();
+		cnae = entity.getCnae();
 	}
 
 	public EmpresaDTO(Long id, @CNPJ String cnpj, String socialReason, String fantasyName,

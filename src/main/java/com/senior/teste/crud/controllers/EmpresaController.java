@@ -1,6 +1,7 @@
 package com.senior.teste.crud.controllers;
 
 import java.net.URI;
+import java.util.List;
 
 import javax.validation.Valid;
 
@@ -39,6 +40,13 @@ public class EmpresaController {
 	public ResponseEntity<EmpresaDTO> findById(@PathVariable Long id) {
 		EmpresaDTO dto = service.findById(id);
 		return ResponseEntity.ok().body(dto);
+	}
+	
+	@ApiOperation(value = "Busca todas as empresas", notes = "Este endpoint busca por todas as empresas")
+	@GetMapping(value = "/fetchAll")
+	public ResponseEntity<List<EmpresaDTO>> findAll() {
+		List<EmpresaDTO> list = service.findAll();
+		return ResponseEntity.ok().body(list);
 	}
 	@ApiOperation(value = "Cria uma empresa", notes = "Este endpoint cria uma empresa")
 	@PostMapping(value = "/create")
