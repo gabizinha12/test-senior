@@ -30,6 +30,7 @@ public class EmpresaDTO implements Serializable {
 	private String telephone;
 	@Email(message = "Favor entrar um email válido")
 	private String email;
+	private String address;
     @ElementCollection
 	private List<String> cnae = new ArrayList<>();
 
@@ -45,12 +46,13 @@ public class EmpresaDTO implements Serializable {
 		telephone = entity.getTelephone();
 		email = entity.getEmail();
 		cnae = entity.getCnae();
+		setAddress(entity.getAddress());
 	}
 
 	public EmpresaDTO(Long id, @CNPJ String cnpj, String socialReason, String fantasyName,
 			@Size(max = 30) String nickName,
 			@Pattern(regexp = "/^\\([0-9]{2}\\) [0-9]?[0-9]{4}-[0-9]{4}$/\r\n") String telephone,
-			@Email(message = "Favor entrar um email válido") String email, List<String> cnae) {
+			@Email(message = "Favor entrar um email válido") String email, List<String> cnae, String address) {
 		super();
 		this.id = id;
 		this.cnpj = cnpj;
@@ -60,6 +62,7 @@ public class EmpresaDTO implements Serializable {
 		this.telephone = telephone;
 		this.email = email;
 		this.cnae = cnae;
+	    this.address = address;
 	}
 
 	public Long getId() {
@@ -124,6 +127,14 @@ public class EmpresaDTO implements Serializable {
 
 	public void setCnae(List<String> cnae) {
 		this.cnae = cnae;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
 }
