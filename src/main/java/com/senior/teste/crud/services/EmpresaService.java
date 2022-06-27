@@ -45,7 +45,7 @@ public class EmpresaService {
 		try {
 		repository.deleteById(id);
 		} catch(EmptyResultDataAccessException e) {
-			throw new ResourceNotFoundException("Id não existe" + id);
+			throw new ResourceNotFoundException("Id não existe " + id);
 		} catch(DataIntegrityViolationException e) {
 			throw new DatabaseException("Violação na integridade da base de dados");
 		}
